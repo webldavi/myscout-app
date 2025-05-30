@@ -23,4 +23,13 @@ import LoginForm from '~/components/Auth/LoginForm.vue';
 import RegisterForm from '~/components/Auth/RegisterForm.vue';
 
 const currentForm = ref(0)
+
+definePageMeta({
+  layout: false
+})
+
+
+useHead({
+  title: 'Login'
+})
 </script>

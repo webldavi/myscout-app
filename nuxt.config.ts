@@ -1,17 +1,29 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
 import Aura from "@primeuix/themes/aura";
-import PrimevueTheme from "./utils/primevue-theme";
 
 export default defineNuxtConfig({
+  ssr: false,
+  app: {
+    head: {
+      title: "MyScout",
+      titleTemplate: "%s - MyScout",
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { name: "description", content: "A plataforma de gestão escoteira" },
+      ],
+      link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
+    },
+  },
   compatibilityDate: "2025-05-15",
   devtools: { enabled: false },
   css: ["~/assets/css/main.css"],
-  modules: ["@primevue/nuxt-module"],
-  runtimeConfig:{
-    public:{
-      apiUrl: process.env.NUXT_API_URL
-    }
+  modules: ["@primevue/nuxt-module", "nuxt-lucide-icons"],
+  runtimeConfig: {
+    public: {
+      apiUrl: process.env.NUXT_API_URL,
+    },
   },
   primevue: {
     autoImport: true,
@@ -20,10 +32,13 @@ export default defineNuxtConfig({
       theme: {
         preset: Aura,
         options: {
-          darkModeSelector: ".my-app-dark",
+          darkModeSelector: "system",
         },
       },
     },
+  },
+  lucide: {
+    namePrefix: "Icon",
   },
   vite: {
     plugins: [tailwindcss()],
